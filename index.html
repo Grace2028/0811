@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Company — 公司簡介</title>
+  <style>
+    :root{--accent:#2563eb;--muted:#6b7280;--bg:#f8fafc}
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial;line-height:1.5;margin:0;background:var(--bg);color:#0f172a}
+    .container{max-width:980px;margin:40px auto;padding:24px;background:#fff;border-radius:12px;box-shadow:0 6px 24px rgba(2,6,23,0.08)}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:1fr;gap:18px}
+    @media(min-width:720px){.grid{grid-template-columns:1fr 320px}}
+    .card{padding:18px;border-radius:10px;background:linear-gradient(180deg,#fff, #fbfdff);box-shadow:0 2px 8px rgba(2,6,23,0.04)}
+    ul{margin:8px 0 0 18px}
+    .actions{display:flex;gap:10px;margin-top:14px}
+    .btn{padding:10px 14px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+    .btn-primary{background:var(--accent);color:#fff}
+    .btn-ghost{background:transparent;border:1px solid #e6eefc;color:var(--accent)}
+    footer{margin-top:18px;font-size:13px;color:var(--muted);text-align:right}
+    .lang-toggle{font-size:13px;color:var(--muted);cursor:default}
+    .contact{font-weight:600}
+    .small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <main class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">Co</div>
+        <div>
+          <h1>Company / 公司</h1>
+          <div class="small lang-toggle">Bilingual • 中 / EN</div>
+        </div>
+      </div>
+      <div class="small">簡潔企業介紹 / Clean company overview</div>
+    </header>
+
+    <section class="grid" style="margin-top:18px">
+      <div class="card">
+        <h3>公司簡介 / Company Overview</h3>
+        <p class="lead">我們是一家具有前瞻思維的企業，致力於提供創新解決方案。使命是以效率、創意與誠信，為客戶創造價值。</p>
+
+        <h4>服務項目 / Our Services</h4>
+        <ul>
+          <li>產品開發 • Product development</li>
+          <li>市場策略 • Market strategy</li>
+          <li>科技解決方案 • Technology solutions</li>
+        </ul>
+
+        <h4 style="margin-top:12px">願景 / Vision</h4>
+        <p class="small">成為業界值得信賴的領導者，推動成長與創新。<br/>To become a trusted leader in our industry by empowering growth and innovation.</p>
+
+        <div class="actions">
+          <button class="btn btn-primary" onclick="location.href='#contact'">Contact / 聯絡</button>
+          <button class="btn btn-ghost" onclick="downloadVCard()">Download vCard</button>
+        </div>
+      </div>
+
+      <aside class="card" id="contact">
+        <h4>聯絡我們 / Contact Us</h4>
+        <p class="contact">info@company.com</p>
+        <p class="small">+1-234-567-890</p>
+        <div style="height:12px"></div>
+        <h5 style="margin:0 0 8px 0">短句 / Tagline</h5>
+        <p class="small">創新驅動 • Innovation Driven</p>
+        <footer>© <span id="year"></span> Company</footer>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function downloadVCard(){
+      const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Company\nORG:Company\nEMAIL:info@company.com\nTEL:+1234567890\nEND:VCARD`;
+      const blob = new Blob([vcard],{type:'text/vcard'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'company.vcf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+  </script>
+</body>
+</html>
